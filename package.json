@@ -3,7 +3,7 @@
   "name": "studio98---tools",
   "title": "Studio98 - Tools",
   "description": "Productivity tools for Studio98 Devs",
-  "icon": "extension-icon.png",
+  "icon": "s98.jpg",
   "author": "sarmadmakhdoom",
   "owner": "sarmad",
   "categories": [
@@ -142,7 +142,7 @@
       "subtitle": "Copy your clipboard to S98 Paste",
       "description": "Template with a plain detail view",
       "mode": "no-view",
-      "icon": "fontawesome.png"
+      "icon": "s98.png"
     },
     {
       "name": "timetracking",
@@ -151,7 +151,7 @@
       "description": "GC Time Tracking",
       "mode": "menu-bar",
       "interval": "1m",
-      "icon": "fontawesome.png",
+      "icon": "gc.png",
       "preferences": [
         {
           "name": "EMAIL",
