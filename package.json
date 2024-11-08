@@ -28,21 +28,90 @@
       "icon": "gc.png"
     },
     {
-      "name": "compute",
-      "title": "Google Compute",
+      "name": "compute-engine",
+      "title": "Google Compute Instances",
       "subtitle": "SSH into compute servers",
       "description": "Template with a plain detail view",
       "mode": "view",
-      "icon": "google.png"
+      "icon": "google.png",
+      "preferences": [
+        {
+          "name": "GCLOUD_PATH",
+          "required": true,
+          "title": "What is your gcloud path?",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "textfield",
+          "defaultValue": ""
+        },
+        {
+          "name": "PROJECT_RAVE_V1",
+          "label": "Rave Retailer v1",
+          "title": "Studio98",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_RAVE_V2",
+          "label": "Rave Retailer v2",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_EH",
+          "label": "Rave - Energized Health",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_JIFU",
+          "label": "Rave - Jifu",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_GC",
+          "label": "GrandCentral",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_YESA",
+          "label": "YESA",
+          "title": "Custom Projects",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_MAKH",
+          "label": "MAKH",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_SUCCEED",
+          "label": "Succeed",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        }
+      ]
     },
-    {
-      "name": "compute-sync",
-      "title": "Google Compute Sync",
-      "subtitle": "Search Rave websites",
-      "description": "Template with a plain detail view",
-      "mode": "no-view",
-      "icon": "google.png"
-    },
+   
     {
       "name": "clear-redis",
       "title": "Clear Redis",
