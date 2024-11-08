@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="167px" viewBox="0 0 30 167" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ClickupIcon-Copy" transform="translate(-85.000000, -17.000000)" fill-rule="nonzero">
+            <g id="Group" transform="translate(85.000000, 17.000000)">
+                <path d="M0,152 C0,143.715729 6.71572875,137 15,137 C23.2842712,137 30,143.715729 30,152 C30,160.284271 23.2842712,167 15,167 C6.71572875,167 0,160.284271 0,152 Z" id="Path" fill="#F73232" opacity="0.4"></path>
+                <path d="M15,0 C21.6375,0 27,5.3178125 27,11.9 L27,107.1 C27,113.682187 21.6375,119 15,119 C8.3625,119 3,113.682187 3,107.1 L3,11.9 C3,5.3178125 8.3625,0 15,0 Z" id="Path" fill="#D11E1E"></path>
+            </g>
+        </g>
+    </g>
+</svg>
