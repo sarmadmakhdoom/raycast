@@ -56,19 +56,7 @@ export default function Command() {
         ))}
         <MenuBarExtra.Section>
           <MenuBarExtra.Item icon="file.svg" title="host" onAction={() => openFile("/etc/hosts")} />
-          <MenuBarExtra.Item
-            title="Refresh GCP Instances"
-            icon="google.png"
-            onAction={async () => {
-              await showToast({
-                style: Toast.Style.Animated,
-                message: "Refreshed",
-                title: "Syncing all GCP Instances",
-              });
-              await fetch(`http://gcp-helpers.local/sync`);
-              await showHUD("Synced all GCP Instances");
-            }}
-          />
+          
         </MenuBarExtra.Section>
       </MenuBarExtra.Section>
     </MenuBarExtra>
