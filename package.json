@@ -111,7 +111,6 @@
         }
       ]
     },
-   
     {
       "name": "clear-redis",
       "title": "Clear Redis",
@@ -180,14 +179,142 @@
       "mode": "menu-bar",
       "interval": "1m",
       "icon": "clickup.png"
+    },
+    {
+      "name": "laravel-logs",
+      "title": "Laravel Logs",
+      "subtitle": "Some good paths and utilities",
+      "description": "Some good paths and utilities",
+      "mode": "view",
+      "icon": "laravel.svg",
+      "preferences": [
+        {
+          "name": "BASE_PATH",
+          "required": true,
+          "title": "What is your www folder base path?",
+          "description": "Log viewer",
+          "type": "textfield",
+          "defaultValue": ""
+        }
+      ]
+    },
+    {
+      "name": "gsql-downloader",
+      "title": "gSQL Download Helper",
+      "subtitle": "gSQL utilities to manage from RayCast",
+      "description": "Template with a plain detail view",
+      "mode": "no-view",
+      "icon": "database.svg"
+    },
+    {
+      "name": "gsql",
+      "title": "gSQL utilities",
+      "subtitle": "gSQL utilities to manage from RayCast",
+      "description": "Template with a plain detail view",
+      "mode": "view",
+      "icon": "database.svg",
+      "preferences": [
+        {
+          "name": "ScriptsPath",
+          "required": true,
+          "title": "Where is your scripts are stores?",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "textfield",
+          "defaultValue": ""
+        },
+        {
+          "name": "GCLOUD_PATH",
+          "required": true,
+          "title": "What is your gcloud path?",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "textfield",
+          "defaultValue": ""
+        },
+        {
+          "name": "DOWNLOAD_PATH",
+          "required": true,
+          "title": "Download path",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "textfield",
+          "defaultValue": ""
+        },
+        {
+          "name": "PROJECT_RAVE_V1",
+          "label": "Rave Retailer v1",
+          "title": "Studio98",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_RAVE_V2",
+          "label": "Rave Retailer v2",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_EH",
+          "label": "Rave - Energized Health",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_JIFU",
+          "label": "Rave - Jifu",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_GC",
+          "label": "GrandCentral",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_YESA",
+          "label": "YESA",
+          "title": "Custom Projects",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_MAKH",
+          "label": "MAKH",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_SUCCEED",
+          "label": "Succeed",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        }
+      ]
     }
   ],
   "dependencies": {
     "@raycast/api": "^1.85.1",
     "@raycast/utils": "^1.17.0",
+    "fs": "^0.0.1-security",
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
     "moment-timezone": "^0.5.46",
+    "path": "^0.12.7",
     "run-applescript": "^7.0.0"
   },
   "devDependencies": {

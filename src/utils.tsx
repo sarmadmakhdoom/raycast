@@ -1,6 +1,5 @@
-import { open, MenuBarExtra, showToast, showHUD, Toast } from "@raycast/api";
+import { open, MenuBarExtra } from "@raycast/api";
 import { useCallback } from "react";
-import fetch from "node-fetch";
 import { useExec, runAppleScript } from "@raycast/utils";
 
 import R from "lodash";
