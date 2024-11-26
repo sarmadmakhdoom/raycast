@@ -64,7 +64,7 @@ const PROJECT_LIST: Record<string, PROJECT_DATA> = {
   },
   PROJECT_YESA: { project: "yesa-app", name: "YESA", shortCodes: ["yesa"], defaultInstance: "yesa" },
   PROJECT_MAKH: { project: "got-management", name: "MAKH", shortCodes: ["makh"], defaultInstance: "makh-org" },
-  PROJECT_SUCCEED: { project: "succeed-430915", name: "Succeed", shortCodes: ["succeed"], defaultInstance: "rave" },
+  PROJECT_SUCCEED: { project: "succeed-430915", name: "Succeed", shortCodes: ["succ"], defaultInstance: "succeed" },
 };
 
 export default function Command() {
@@ -270,7 +270,6 @@ function ImportDatabaseForm(props: { GCLOUD_PATH: string; project: string; insta
   // }, [instance, database, setDbName])
   // console.log(dbName);
 
-  console.log(ScriptsPath)
   return (
     <Form
       navigationTitle="Downloading Database"

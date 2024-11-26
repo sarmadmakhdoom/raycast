@@ -160,6 +160,7 @@
           "type": "textfield",
           "defaultValue": ""
         }
+        
       ]
     },
     {
@@ -169,7 +170,25 @@
       "description": "Clickup widget on the menu bar",
       "mode": "menu-bar",
       "interval": "1m",
-      "icon": "clickup.png"
+      "icon": "clickup.png",
+      "preferences": [
+        {
+          "name": "EMAIL",
+          "required": true,
+          "title": "Clickup Email",
+          "description": "Email for Clickup",
+          "type": "textfield",
+          "defaultValue": ""
+        },
+        {
+          "name": "SYNCED",
+          "required": false,
+          "label": "Show Recently Synced Tasks",
+          "description": "Show Recently Synced Tasks",
+          "type": "checkbox",
+          "defaultValue": false
+        }
+      ]
     },
     {
       "name": "utils",
