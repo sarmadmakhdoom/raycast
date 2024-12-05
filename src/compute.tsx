@@ -27,7 +27,6 @@ export default function Command() {
 
   const onAction = useCallback(async (command: string) => {
     const defaultApplication = await getFrontmostApplication();
-    console.log(defaultApplication.name)
     if(defaultApplication.name === 'iTerm2'){
       await runAppleScript(`
       tell application "iTerm2"
@@ -66,7 +65,7 @@ export default function Command() {
               icon={{ source: "google.png" }}
               actions={
                 <ActionPanel>
-                  <Action title="SSH into server" onAction={() => onAction(item.arg)} />
+                  <Action title="Ssh into Server" onAction={() => onAction(item.arg)} />
                 </ActionPanel>
               }
             />
@@ -79,7 +78,7 @@ export default function Command() {
           icon={Icon.Repeat}
           actions={
             <ActionPanel>
-              <Action title="Sync servers" onAction={onSync}  />
+              <Action title="Sync Servers" onAction={onSync}  />
             </ActionPanel>
           }
         />

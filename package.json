@@ -170,7 +170,8 @@
       "description": "Clickup widget on the menu bar",
       "mode": "menu-bar",
       "interval": "1m",
-      "icon": "clickup.png",
+      "icon": "clickup-nodanger.png",
+      
       "preferences": [
         {
           "name": "EMAIL",
@@ -189,6 +190,14 @@
           "defaultValue": false
         }
       ]
+    },
+    {
+      "name": "clickup-details",
+      "title": "Clickup task Details",
+      "subtitle": "Clickup task Details",
+      "description": "Clickup task Details",
+      "mode": "view",
+      "icon": "clickup-nodanger.png"
     },
     {
       "name": "utils",
@@ -324,6 +333,31 @@
           "defaultValue": false
         }
       ]
+    },
+    {
+      "name": "php-switcher",
+      "title": "php Switcher",
+      "subtitle": "php Switcher",
+      "description": "Template with a plain detail view",
+      "mode": "menu-bar",
+      "icon": "php.svg",
+      "interval": "5m"
+    },
+    {
+      "name": "watch-rave",
+      "title": "watch:rave2.0",
+      "subtitle": "watch:rave2.0",
+      "description": "Template with a plain detail view",
+      "mode": "menu-bar",
+      "icon": "php.svg"
+    },
+    {
+      "name": "watch-gc",
+      "title": "watch:gc",
+      "subtitle": "watch:gc",
+      "description": "Template with a plain detail view",
+      "mode": "menu-bar",
+      "icon": "php.svg"
     }
   ],
   "dependencies": {

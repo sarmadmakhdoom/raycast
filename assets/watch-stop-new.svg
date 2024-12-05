@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="493px" height="493px" viewBox="0 0 493 493" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Shape</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" fill="#FA0000" fill-rule="nonzero">
+            <g id="watch-stop">
+                <path d="M246.5,30.8125 C365.620917,30.8125 462.1875,127.379083 462.1875,246.5 C462.1875,365.620917 365.620917,462.1875 246.5,462.1875 C127.379083,462.1875 30.8125,365.620917 30.8125,246.5 C30.8125,127.379083 127.379083,30.8125 246.5,30.8125 Z M246.5,493 C382.638191,493 493,382.638191 493,246.5 C493,110.361809 382.638191,0 246.5,0 C110.361809,0 0,110.361809 0,246.5 C0,382.638191 110.361809,493 246.5,493 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
