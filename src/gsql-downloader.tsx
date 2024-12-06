@@ -1,8 +1,8 @@
-import { closeMainWindow, LaunchProps, showHUD, showToast, Toast } from "@raycast/api";
+import { closeMainWindow, LaunchProps, showToast, Toast } from "@raycast/api";
 import { spawn } from "child_process";
 
 const execPromiseIncremental = (command: string, params: string[]) =>
-  new Promise<string>((resolve, reject) => {
+  new Promise<string>((resolve) => {
     const instance = spawn(command, params);
     instance.stdout.on("data", (data) => {
       showToast({
@@ -17,16 +17,15 @@ const execPromiseIncremental = (command: string, params: string[]) =>
       //   title: data,
       // });
       // reject(data);
-
     });
 
-    instance.on('exit', () => {
+    instance.on("exit", () => {
       resolve("exit");
-    })
+    });
   });
 
 export default async function Command(props: LaunchProps) {
-  const {project, instance, database, dbName, domain, isImport, DOWNLOAD_PATH, ScriptsPath} = props.arguments;
+  const { project, instance, database, dbName, domain, isImport, DOWNLOAD_PATH, ScriptsPath } = props.arguments;
   closeMainWindow();
   await showToast({
     style: Toast.Style.Animated,
@@ -34,13 +33,20 @@ export default async function Command(props: LaunchProps) {
     title: `Downloading database ${database}`,
   });
 
-  const output = await execPromiseIncremental(`${ScriptsPath}/gsql-raycast`,  [project, instance, database, dbName, domain, isImport, DOWNLOAD_PATH])
-  console.log(output)
+  const output = await execPromiseIncremental(`${ScriptsPath}/gsql-raycast`, [
+    project,
+    instance,
+    database,
+    dbName,
+    domain,
+    isImport,
+    DOWNLOAD_PATH,
+  ]);
+  console.log(output);
 
   await showToast({
-      style: Toast.Style.Success,
-      message: "Refreshed",
-      title: "Database downloaded successfully",
+    style: Toast.Style.Success,
+    message: "Refreshed",
+    title: "Database downloaded successfully",
   });
-
 }

@@ -7,12 +7,12 @@ import { exec } from "node:child_process";
 
 const execPromise = (command: string) =>
   new Promise<string>((resolve, reject) => {
-    exec(command, { env: { HOME: process.env.HOME, PATH: "/Users/sarmadmakhdoom/scripts:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/go/bin", } }, (error, stdout) => {
+    exec(command, { env: { HOME: process.env.HOME, PATH: "/opt/homebrew/opt/mysql-client@8.4/bin:/opt/homebrew/opt/mysql-client/bin:/Users/sarmadmakhdoom/Downloads/google-cloud-sdk/bin:/Users/sarmadmakhdoom/.nvm/versions/node/v18.15.0/bin:/Users/sarmadmakhdoom/scripts:/Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/usr/local/share/dotnet:~/.dotnet/tools:/usr/local/go/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/iTerm.app/Contents/Resources/utilities", } }, (error, stdout) => {
       if (error) {
-        // console.log(error);
+        console.log(error);
         reject(error);
       }
-      // console.log(stdout);
+      console.log(stdout);
       resolve(stdout);
     });
   });

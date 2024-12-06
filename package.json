@@ -344,12 +344,98 @@
       "interval": "5m"
     },
     {
+      "name": "watch-projects",
+      "title": "Watch all react projects",
+      "subtitle": "Watch all react projects",
+      "description": "Template with a plain detail view",
+      "mode": "menu-bar",
+      "icon": "php.svg",
+      "interval": "5m",
+      "preferences": [
+        {
+          "name": "ScriptsPath",
+          "required": true,
+          "title": "Where is your scripts are stores?",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "textfield",
+          "defaultValue": ""
+        },
+        {
+          "name": "PROJECT_RAVE_V2",
+          "label": "Rave Retailer v2",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_RAVE_V2_PATH",
+          "required": false,
+          "title": "Rave 2.0 Path",
+          "description": "Rave 2.0 Path",
+          "type": "textfield",
+          "defaultValue": ""
+        },
+        {
+          "name": "PROJECT_GC",
+          "label": "GrandCentral",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_GC_PATH",
+          "required": false,
+          "title": "GC Path",
+          "description": "GC Path",
+          "type": "textfield",
+          "defaultValue": ""
+        },
+
+        {
+          "name": "PROJECT_YESA",
+          "label": "YESA",
+          "title": "Custom Projects",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_YESA_PATH",
+          "required": false,
+          "title": "YESA Path",
+          "description": "YESA Path",
+          "type": "textfield",
+          "defaultValue": ""
+        },
+        {
+          "name": "PROJECT_SUCCEED",
+          "label": "Succeed",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_SUCCEED_PATH",
+          "required": false,
+          "title": "Succeed Path",
+          "description": "Succeed Path",
+          "type": "textfield",
+          "defaultValue": ""
+        }
+      ]
+    },
+    {
       "name": "watch-rave",
       "title": "watch:rave2.0",
       "subtitle": "watch:rave2.0",
       "description": "Template with a plain detail view",
       "mode": "menu-bar",
-      "icon": "php.svg"
+      "icon": "php.svg",
+      "interval": "5m"
     },
     {
       "name": "watch-gc",
@@ -357,7 +443,8 @@
       "subtitle": "watch:gc",
       "description": "Template with a plain detail view",
       "mode": "menu-bar",
-      "icon": "php.svg"
+      "icon": "php.svg",
+      "interval": "5m"
     }
   ],
   "dependencies": {

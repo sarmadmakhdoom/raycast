@@ -1,6 +1,6 @@
 import { Action, ActionPanel, List, closeMainWindow, Icon, showToast, Toast, getFrontmostApplication, launchCommand, LaunchType } from "@raycast/api";
-import { useFetch, usePromise } from "@raycast/utils";
-import { useCallback, useMemo, useRef } from "react";
+import { useFetch } from "@raycast/utils";
+import { useCallback, useMemo } from "react";
 import R from "lodash";
 import { runAppleScript } from "run-applescript";
 
@@ -13,8 +13,7 @@ interface RaveRetailerData {
   }[];
 }
 export default function Command() {
-  const { isLoading, data, revalidate } = useFetch<RaveRetailerData>("http://gcp-helpers.local/alfred");
-  const abortable = useRef<AbortController>();
+  const { isLoading, data } = useFetch<RaveRetailerData>("http://gcp-helpers.local/alfred");
 
   const items = useMemo(() => {
     if (!data) return [];
