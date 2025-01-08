@@ -27,7 +27,7 @@ interface RaveRetailerData {
     uid: string; }[]
 }
 export default function Command() {
-  const {isLoading, data, revalidate} = useFetch<RaveRetailerData>("https://admin.raveretailer.com/alfred");
+  const {isLoading, data} = useFetch<RaveRetailerData>("https://admin.raveretailer.com/alfred");
   const [search, setSearch] = useState<string>("");
 
   const items = useMemo(() => {
@@ -75,7 +75,7 @@ export default function Command() {
       <ActionPanel>
         <Action.OpenInBrowser url={item.arg} />
         <Action.OpenInBrowser url={item.mods.cmd.arg} title={`Open ${item.mods.cmd.arg}`} />
-        <Action.CopyToClipboard content={item.uid} title="Copy Tenant ID" shortcut={{modifiers: ['cmd', 'shift'], key: 'c'}} />
+        <Action.CopyToClipboard content={item.uid} title="Copy Tenant Id" shortcut={{modifiers: ['cmd', 'shift'], key: 'c'}} />
         <Action.OpenInBrowser url={item.mods.shift.arg} title={`Open ${item.mods.shift.arg}`} shortcut={{modifiers: ['shift'], key: 'return'}} />
         <Action.OpenInBrowser url={item.mods.alt.arg} title={`Open Stage 1 - Backend`} shortcut={{modifiers: ['cmd'], key: '1'}} />
         <Action.OpenInBrowser url={item.mods.alt.arg.replace('stage1', 'stage2')} title={`Open Stage 2 - Backend`} shortcut={{modifiers: ['cmd'], key: '2'}} />
