@@ -11,7 +11,7 @@ interface Response {
 
 export default function Command(props: LaunchProps) {
   // const HOST = "https://app.grandcentr.al";
-  const taskId = props.arguments.taskId;
+  const taskId = '86er56fzv'; //props.arguments.taskId;
   const HOST = "http://app.gc.local";
   const { data, isLoading, revalidate } = useFetch<Response>(`${HOST}/api/raycast/task/${taskId}`, {
     headers: { "Content-Type": "application/json" },
@@ -62,6 +62,9 @@ export default function Command(props: LaunchProps) {
       metadata={
         <Detail.Metadata>
           <Detail.Metadata.Label title="List" text={task?.list.name || ""} />
+          <Detail.Metadata.TagList title="Priority">
+              <Detail.Metadata.TagList.Item  text={R.upperCase(task?.priority.priority)} color={task?.priority.color} />
+          </Detail.Metadata.TagList>
           <Detail.Metadata.Label title="Status" text={R.upperCase(task?.status.status || "")} />
           <Detail.Metadata.TagList title="Assignees">
             {(task?.assignees || []).map((assignee) => (

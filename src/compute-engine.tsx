@@ -6,14 +6,14 @@ import {
   Icon,
   showToast,
   Toast,
-  getFrontmostApplication,
   getPreferenceValues,
 } from "@raycast/api";
 
-import { runAppleScript, useLocalStorage } from "@raycast/utils";
+import { useLocalStorage } from "@raycast/utils";
 import { useCallback, useMemo } from "react";
 import R from "lodash";
 import { exec } from "node:child_process";
+import { openInTerminal } from "./helpers";
 const execPromise = (command: string) =>
   new Promise<string>((resolve, reject) => {
     exec(command, (error, stdout) => {
@@ -28,6 +28,7 @@ interface ComputeInstance {
   title: string;
   zone: string;
   project: string;
+  group?: string;
 }
 
 const PROJECT_LIST = {
@@ -58,35 +59,27 @@ export default function Command() {
 
   const onAction = useCallback(
     async (item: ComputeInstance) => {
-      const defaultApplication = await getFrontmostApplication();
-      const command = `${GCLOUD_PATH}gcloud compute ssh ${item.title} --zone=${item.zone} --project=${item.project}`;
-      console.log(command);
-      if (defaultApplication.name === "iTerm2") {
-        await runAppleScript(`
-      tell application "iTerm2"
-        tell current window
-        create tab with default profile command "${command}"
-        activate
-        end tell
-      end tell
-      `);
-      } else {
-        await runAppleScript(`
-      tell application "iTerm2"
-        create window with default profile command "${command}"
-        activate
-      end tell
-      `);
+      const commands: string[] = [];
+      if(item.group){
+        (items ||[]).filter(c => c.group == item.group).forEach(c => {
+          commands.push(`${GCLOUD_PATH}gcloud compute ssh ${c.title} --zone=${c.zone} --project=${c.project}`);
+        } );
+        await openInTerminal(commands)
+        await closeMainWindow({ clearRootSearch: true });
+        
+      }else{
+        const command = `${GCLOUD_PATH}gcloud compute ssh ${item.title} --zone=${item.zone} --project=${item.project}`;
+        await openInTerminal(command);
+        await closeMainWindow({ clearRootSearch: true });
       }
-      await closeMainWindow({ clearRootSearch: true });
     },
-    [GCLOUD_PATH],
+    [GCLOUD_PATH, items],
   );
 
   const listOfInstances = useCallback(
     async (project: string) => {
       return execPromise(
-        `${GCLOUD_PATH}gcloud compute instances list --format="json(name,zone)" --project="${project}"`,
+        `${GCLOUD_PATH}gcloud compute instances list --format="json(name,zone,metadata)" --project="${project}"`,
       );
     },
     [GCLOUD_PATH],
@@ -106,6 +99,7 @@ export default function Command() {
         title: o.name,
         zone: takeRightUntilChar(o.zone, "/"),
         project,
+        group: R.find(o.metadata.items, m => m.key == 'instance-template')?.value,
       }));
       allInstances = [...allInstances, ...output];
     }

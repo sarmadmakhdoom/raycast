@@ -1,6 +1,4 @@
 import { Clipboard, showToast, Toast, showHUD } from "@raycast/api";
-import { useFetch } from "@raycast/utils";
-import { useMemo, useState } from "react";
 import R from 'lodash';
 import fetch from 'node-fetch';
 
@@ -8,7 +6,7 @@ import fetch from 'node-fetch';
 export default async function Command() {
   const text = await Clipboard.readText();
   if(!R.isEmpty(text)){
-    const toast = await showToast({
+    await showToast({
       style: Toast.Style.Animated,
       title: "Uploading to paste bin",
     });
@@ -21,9 +19,9 @@ export default async function Command() {
     });
 
     const url = await response.text();
+    console.log('url', url);
     Clipboard.copy(url);;
     await showToast({ title: "Link Copied", message: url, style: Toast.Style.Success });
-    // success emoji
     
     await showHUD("Link Copied to clipboard 🤗");
   } else {

@@ -1,4 +1,4 @@
-import { open, MenuBarExtra, getPreferenceValues, launchCommand, LaunchType } from "@raycast/api";
+import { open, MenuBarExtra, getPreferenceValues } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
 import { useMemo } from "react";
 import * as R from "lodash";
@@ -46,8 +46,8 @@ export default function Command() {
       return `${synced.length} tasks`;
     } else {
       if (data.totalSprintTasks == 0) return undefined;
-      if (data.totalSprintTasks == 1) return "1 task";
-      return `${data.totalSprintTasks} tasks`;
+      if (data.totalSprintTasks == 1) return "1";
+      return `${data.totalSprintTasks}`;
     }
   }, [synced, data]);
 
@@ -58,26 +58,12 @@ export default function Command() {
   }, [synced, SYNCED, data]);
 
   return (
-    <MenuBarExtra icon={icon} isLoading={isLoading} title={title} >
+    <MenuBarExtra icon={icon} isLoading={isLoading} title={title}>
       {SYNCED && synced.length > 0 && (
         <MenuBarExtra.Section title="Recently Synced">
           {!!data &&
             synced.map((item) => (
-              <MenuBarExtra.Item
-                title={item.title}
-                key={item.id}
-                onAction={async () => {
-                  // launchCommand({
-                  //   name: "clickup-details",
-                  //   type: LaunchType.UserInitiated,
-                  //   arguments: {
-                  //     taskId: item.id,
-                  //   },
-                  // });
-
-                  open(item.url);
-                }}
-              />
+              <MenuBarExtra.Item title={item.title} key={item.id} onAction={async () => open(item.url)} />
             ))}
         </MenuBarExtra.Section>
       )}
@@ -88,24 +74,58 @@ export default function Command() {
         return (
           <MenuBarExtra.Section title={status} key={status}>
             {data?.sprint[status].map((item) => (
-              <MenuBarExtra.Item
-                title={item.title}
-                key={item.id}
-                onAction={async () => {
-                  // launchCommand({
-                  //   name: "clickup-details",
-                  //   type: LaunchType.UserInitiated,
-                  //   arguments: {
-                  //     taskId: item.id,
-                  //   },
-                  // });
-                  open(item.url);
-                }}
-              />
+              <MenuBarExtra.Item title={item.title} key={item.id} onAction={async () => open(item.url)} />
             ))}
           </MenuBarExtra.Section>
         );
       })}
+      <MenuBarExtra.Section title="Team">
+        <TeamMemberMenu email="abdul@studio98.com" title="Abdul" />
+        <TeamMemberMenu email="saad@studio98.com" title="Saad" />
+        <TeamMemberMenu email="hayder@studio98.com" title="Hayder" />
+        <TeamMemberMenu email="zubair@studio98.com" title="Zubair" />
+        <TeamMemberMenu email="arham@studio98.com" title="Arham" />
+        <TeamMemberMenu email="nabeel@studio98.com" title="Nabeel" />
+        <TeamMemberMenu email="shayan@studio98.com" title="Shayan" />
+        <TeamMemberMenu email="hassan@studio98.com" title="Hassan" />
+        <TeamMemberMenu email="hanan@studio98.com" title="Hanan" />
+      </MenuBarExtra.Section>
     </MenuBarExtra>
   );
 }
+
+const TeamMemberMenu = ({ email, title }: { email: string; title: string }) => {
+  const HOST = "https://app.grandcentr.al";
+  const { data } = useFetch<Response>(`${HOST}/api/raycast/clickup-all?email=${email}`, {
+    headers: { "Content-Type": "application/json" },
+  });
+
+  const statusOrders = [
+    "Now",
+    "Need Info",
+    "In Development",
+    "Dev Testing",
+    "To Do",
+    "Hold",
+    "In Progress",
+    "Staging",
+    "Need Documentation",
+  ];
+
+  return (
+    <MenuBarExtra.Submenu title={data ? `${title} (${data.totalSprintTasks.toString()})` : title}>
+      {statusOrders.map((status) => {
+        const items = R.get(data, `sprint.${status}`, []);
+        if (items.length === 0) return null;
+
+        return (
+          <MenuBarExtra.Section title={status} key={status}>
+            {data?.sprint[status].map((item) => (
+              <MenuBarExtra.Item title={item.title} key={item.id} onAction={async () => open(item.url)} />
+            ))}
+          </MenuBarExtra.Section>
+        );
+      })}
+    </MenuBarExtra.Submenu>
+  );
+};
