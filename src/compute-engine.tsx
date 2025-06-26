@@ -40,6 +40,7 @@ const PROJECT_LIST = {
    PROJECT_YESA: "yesa-app" ,
    PROJECT_MAKH: "got-management" ,
    PROJECT_SUCCEED: "succeed-430915" ,
+   PROJECT_AI: "ai-studio98" ,
 };
 
 export default function Command() {

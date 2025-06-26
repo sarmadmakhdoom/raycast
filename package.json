@@ -28,6 +28,14 @@
       "icon": "gc.png"
     },
     {
+      "name": "gc-search",
+      "title": "GC Global Search",
+      "subtitle": "Search GC",
+      "description": "Template with a plain detail view",
+      "mode": "view",
+      "icon": "gc.png"
+    },
+    {
       "name": "compute-engine",
       "title": "Google Compute Instances",
       "subtitle": "SSH into compute servers",
@@ -104,6 +112,14 @@
         {
           "name": "PROJECT_SUCCEED",
           "label": "Succeed",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_AI",
+          "label": "AI98",
           "description": "gcloud utility part of google cloud sdk",
           "type": "checkbox",
           "required": false,
@@ -391,6 +407,22 @@
           "defaultValue": ""
         },
         {
+          "name": "PROJECT_GC_ADMIN",
+          "label": "GrandCentral Admin",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_GC_ADMIN_PATH",
+          "required": false,
+          "title": "GC Admin Path",
+          "description": "GC Admin Path",
+          "type": "textfield",
+          "defaultValue": ""
+        },
+        {
           "name": "PROJECT_YESA",
           "label": "YESA",
           "title": "Custom Projects",
@@ -420,6 +452,56 @@
           "required": false,
           "title": "Succeed Path",
           "description": "Succeed Path",
+          "type": "textfield",
+          "defaultValue": ""
+        },
+        {
+          "name": "PROJECT_RAVE_V2_ADMIN",
+          "label": "Rave Retailer v2 Admin",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+        {
+          "name": "PROJECT_RAVE_V2_ADMIN_PATH",
+          "required": false,
+          "title": "Rave 2.0 Admin Path",
+          "description": "Rave 2.0 Admin Path",
+          "type": "textfield",
+          "defaultValue": ""
+        },
+        {
+          "name": "PROJECT_AI_ADMIN",
+          "label": "AI98 Admin",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+
+        {
+          "name": "PROJECT_AI_ADMIN_PATH",
+          "required": false,
+          "title": "AI98 Admin Path",
+          "description": "AI98 Admin Path",
+          "type": "textfield",
+          "defaultValue": ""
+        },
+        {
+          "name": "PROJECT_AI_APP",
+          "label": "AI98 App",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
+        },
+
+        {
+          "name": "PROJECT_AI_APP_PATH",
+          "required": false,
+          "title": "AI98 App Path",
+          "description": "AI98 App Path",
           "type": "textfield",
           "defaultValue": ""
         }

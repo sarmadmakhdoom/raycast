@@ -11,6 +11,7 @@ export default function Command() {
   const { BASE_PATH } = getPreferenceValues();
   const [search, setSearch] = useState<string>("");
   const projects: LaravelProjects[] = [
+    { title: "AI98", path: "ai98-backend" },
     { title: "GrandCentral", path: "grandcentral-react" },
     { title: "Rave 2.0", path: "rave2.0" },
     { title: "Rave 1.0", path: "gsr-web" },

@@ -1,8 +1,9 @@
 import { open, MenuBarExtra } from "@raycast/api";
 import { useCallback } from "react";
-import { useExec, runAppleScript } from "@raycast/utils";
+import { useExec } from "@raycast/utils";
 
 import R from "lodash";
+import { openInTerminal } from "./helpers";
 export default function Command() {
   const PHP_VERSIONS = ["7.4", "8.1", "8.2"];
 
@@ -14,14 +15,7 @@ export default function Command() {
   });
 
   const onStartProxy = useCallback(() => {
-    //
-    runAppleScript(`tell application "iTerm2"
-    create window with default profile
-      tell current session of current window
-          write text "run_proxy"
-      end tell
-  end tell
-`);
+    openInTerminal("run_proxy");
   }, []);
 
   const openFile = useCallback((path: string) => {
@@ -55,7 +49,6 @@ export default function Command() {
         ))}
         <MenuBarExtra.Section>
           <MenuBarExtra.Item icon="file.svg" title="host" onAction={() => openFile("/etc/hosts")} />
-          
         </MenuBarExtra.Section>
       </MenuBarExtra.Section>
     </MenuBarExtra>

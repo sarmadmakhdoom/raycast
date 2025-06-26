@@ -35,9 +35,13 @@ interface ListData {
 
 const PROJECT_LIST: Record<string, ListData> = {
   PROJECT_RAVE_V2: { session: "rave", path: "", name: "Rave", npm: "18" },
+  PROJECT_RAVE_V2_ADMIN: { session: "rave-admin", path: "", name: "Rave Admin", npm: "18" },
   PROJECT_GC: { session: "gc", path: "", name: "GC", npm: "18" },
+  PROJECT_GC_ADMIN: { session: "gc-admin", path: "", name: "GC Admin", npm: "18" },
   PROJECT_YESA: { session: "yesa", path: "", name: "YESA", npm: "15.14.0" },
   PROJECT_SUCCEED: { session: "succeed", path: "", name: "Succeed", npm: "18" },
+  PROJECT_AI_ADMIN: { session: "ai98-admin", path: "", name: "AI98 Admin", npm: "18" },
+  PROJECT_AI_APP: { session: "ai98-app", path: "", name: "AI98 App", npm: "18" },
 };
 
 export default function Command() {
