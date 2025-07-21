@@ -62,6 +62,12 @@ const PROJECT_LIST: Record<string, PROJECT_DATA> = {
     shortCodes: ["gc"],
     defaultInstance: "grand-central-prod",
   },
+  PROJECT_AI: {
+    project: "ai-studio98",
+    name: "Studio98 AI",
+    shortCodes: ["ai"],
+    defaultInstance: "aistudio98",
+  },
   PROJECT_YESA: { project: "yesa-app", name: "YESA", shortCodes: ["yesa"], defaultInstance: "yesa" },
   PROJECT_MAKH: { project: "got-management", name: "MAKH", shortCodes: ["makh"], defaultInstance: "makh-org" },
   PROJECT_SUCCEED: { project: "succeed-430915", name: "Succeed", shortCodes: ["succ"], defaultInstance: "succeed" },

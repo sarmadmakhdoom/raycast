@@ -345,6 +345,14 @@
           "type": "checkbox",
           "required": false,
           "defaultValue": false
+        },
+        {
+          "name": "PROJECT_AI",
+          "label": "S98 AI",
+          "description": "gcloud utility part of google cloud sdk",
+          "type": "checkbox",
+          "required": false,
+          "defaultValue": false
         }
       ]
     },
