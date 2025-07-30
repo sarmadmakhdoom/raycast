@@ -255,7 +255,8 @@ function DatabaseSelection(props: { GCLOUD_PATH: string; project: string; instan
 
 function ImportDatabaseForm(props: { GCLOUD_PATH: string; project: string; instance: string; database: string }) {
   const { instance, project, database } = props;
-  const { DOWNLOAD_PATH, ScriptsPath } = getPreferenceValues();
+  // No longer need DOWNLOAD_PATH and ScriptsPath since we're using URL scheme
+  // const { DOWNLOAD_PATH, ScriptsPath } = getPreferenceValues();
   const [dbName, setDbName] = useState<string>(database);
   const [localUrl, setLocalUrl] = useState<string>("");
   const [isImport, setImport] = useState<boolean>(true);
@@ -285,20 +286,23 @@ function ImportDatabaseForm(props: { GCLOUD_PATH: string; project: string; insta
             title="Download"
             onAction={async () => {
               popToRoot();
-              launchCommand({
-                name: "gsql-downloader",
-                type: LaunchType.UserInitiated,
-                arguments: {
-                  project,
-                  instance,
-                  database,
-                  dbName,
-                  domain,
-                  isImport: isImport == true ? "true" : "false",
-                  DOWNLOAD_PATH,
-                  ScriptsPath,
-                },
-              });
+              const url = `studio98tools://download?project=${project}&instance=${instance}&database=${database}&dbName=${dbName}&domain=${domain}&import=${isImport}`;
+              // Commented out the existing command
+              // launchCommand({
+              //   name: "gsql-downloader",
+              //   type: LaunchType.UserInitiated,
+              //   arguments: {
+              //     project,
+              //     instance,
+              //     database,
+              //     dbName,
+              //     domain,
+              //     isImport: isImport == true ? "true" : "false",
+              //     DOWNLOAD_PATH,
+              //     ScriptsPath,
+              //   },
+              // });
+              exec(`open "${url}"`);
             }}
           />
         </ActionPanel>
@@ -307,7 +311,6 @@ function ImportDatabaseForm(props: { GCLOUD_PATH: string; project: string; insta
       <Form.Description title="Project Name" text={project} />
       <Form.Description title="Database Instance" text={instance} />
       <Form.Description title="Database Database" text={database} />
-      <Form.Description title="Download Path" text={DOWNLOAD_PATH} />
       <Form.Separator />
       <Form.TextField id="dbUrl" title="Local URL" onChange={setLocalUrl} />
       <Form.TextField id="dbName" title="Database Name" onChange={setDbName} value={dbName} />
