@@ -220,7 +220,9 @@ function DatabaseSelection(props: { GCLOUD_PATH: string; project: string; instan
   const adjustedItems = useMemo(() => {
     if (!items) return [];
     if (!relevantData) return items;
-    return items.map((item) => {
+    return items.filter(f => {
+      return !['information_schema', 'mysql', 'performance_schema', 'sys'].includes(f.name)
+    }).map((item) => {
       const title = relevantData.items.find((gcItem) => item.name.includes(gcItem.uid))?.title;
       return { ...item, title };
     });
