@@ -6,8 +6,6 @@ import {
   useNavigation,
   Form,
   popToRoot,
-  launchCommand,
-  LaunchType,
 } from "@raycast/api";
 
 import { useFetch, useLocalStorage } from "@raycast/utils";
@@ -188,6 +186,9 @@ function DatabaseSelection(props: { GCLOUD_PATH: string; project: string; instan
   const { data: raveData } = useFetch<RaveRetailerData>("https://admin.raveretailer.com/alfred", {
     keepPreviousData: true,
   });
+  const { data: aiData } = useFetch<RaveRetailerData>("https://api.studio98.ai/api/admin/raycast", {
+    keepPreviousData: true,
+  });
 
   const {
     value: items,
@@ -203,7 +204,18 @@ function DatabaseSelection(props: { GCLOUD_PATH: string; project: string; instan
       setItems(sqlInstances);
     });
   }, [project]);
-  const relevantData = useMemo(() => (instance == "gsr-shared" ? raveData : gcData), [instance, raveData, gcData]);
+  const relevantData = useMemo(() => {
+    switch(instance){
+      case "gsr-shared":
+        return raveData;
+      case "grand-central-prod":
+        return gcData;
+      case "aistudio98":
+        return aiData;
+      default:
+        return null;
+    }
+  }, [instance, raveData, gcData, aiData]);
 
   const adjustedItems = useMemo(() => {
     if (!items) return [];

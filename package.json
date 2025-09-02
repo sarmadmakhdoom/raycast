@@ -28,6 +28,14 @@
       "icon": "gc.png"
     },
     {
+      "name": "ai98",
+      "title": "AI 98",
+      "subtitle": "Open AI 98 accounts",
+      "description": "Template with a plain detail view",
+      "mode": "view",
+      "icon": "ai98.png"
+    },
+    {
       "name": "gc-search",
       "title": "GC Global Search",
       "subtitle": "Search GC",

@@ -138,6 +138,7 @@ export default function Command() {
         {/* <TeamMemberMenu email="zubair@studio98.com" title="Zubair" /> */}
         <TeamMemberMenu email="arham@studio98.com" title="Arham" />
         <TeamMemberMenu email="nabeel@studio98.com" title="Nabeel" />
+        <TeamMemberMenu email="rizwan@studio98.com" title="Rizwan" />
         {/* <TeamMemberMenu email="shayan@studio98.com" title="Shayan" /> */}
         {/* <TeamMemberMenu email="hanan@studio98.com" title="Hanan" /> */}
       </MenuBarExtra.Section>
@@ -152,6 +153,7 @@ const TeamMemberMenu = ({ email, title }: { email: string; title: string }) => {
     headers: { "Content-Type": "application/json" },
     // cache: "no-cache",
   });
+  console.log(data, email)
 
   const statusOrders = [
     "Yet to be Refined",
@@ -201,7 +203,7 @@ const TeamMemberMenu = ({ email, title }: { email: string; title: string }) => {
           </MenuBarExtra.Section>
         );
       })}
-      {!!data && (data.prevSprint.needAttentionTasks > 0 || data.prevSprint.totalSprintTasks > 0) && (
+      {/* {!!data && (data.prevSprint.needAttentionTasks > 0 || data.prevSprint.totalSprintTasks > 0) && (
         <MenuBarExtra.Section>
           <MenuBarExtra.Submenu
             title={`Previous Sprint (${data?.prevSprint.totalSprintTasks})${data?.prevSprint.needAttentionTasks > 0 ? " - 🚨" + data?.prevSprint.needAttentionTasks : ""}`}
@@ -225,7 +227,7 @@ const TeamMemberMenu = ({ email, title }: { email: string; title: string }) => {
             })}
           </MenuBarExtra.Submenu>
         </MenuBarExtra.Section>
-      )}
+      )} */}
     </MenuBarExtra.Submenu>
   );
 };
