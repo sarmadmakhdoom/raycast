@@ -44,6 +44,14 @@
       "icon": "gc.png"
     },
     {
+      "name": "horizon",
+      "title": "Horizon Search",
+      "subtitle": "Search Horizon",
+      "description": "Template with a plain detail view",
+      "mode": "view",
+      "icon": "queue.svg"
+    },
+    {
       "name": "compute-engine",
       "title": "Google Compute Instances",
       "subtitle": "SSH into compute servers",
@@ -157,7 +165,7 @@
       "subtitle": "Epoch to moment",
       "description": "Template with a plain detail view",
       "mode": "view",
-      "icon": "fontawesome.png"
+      "icon": "time.svg"
     },
     {
       "name": "paste",

@@ -274,6 +274,7 @@ function ImportDatabaseForm(props: { GCLOUD_PATH: string; project: string; insta
   const [dbName, setDbName] = useState<string>(database);
   const [localUrl, setLocalUrl] = useState<string>("");
   const [isImport, setImport] = useState<boolean>(true);
+  const [isSelectiveTable, setSelectiveTable] = useState<boolean>(true);
   const domain = useMemo(() => {
     if (R.isEmpty(localUrl)) {
       return "none";
@@ -300,22 +301,7 @@ function ImportDatabaseForm(props: { GCLOUD_PATH: string; project: string; insta
             title="Download"
             onAction={async () => {
               popToRoot();
-              const url = `studio98tools://download?project=${project}&instance=${instance}&database=${database}&dbName=${dbName}&domain=${domain}&import=${isImport}`;
-              // Commented out the existing command
-              // launchCommand({
-              //   name: "gsql-downloader",
-              //   type: LaunchType.UserInitiated,
-              //   arguments: {
-              //     project,
-              //     instance,
-              //     database,
-              //     dbName,
-              //     domain,
-              //     isImport: isImport == true ? "true" : "false",
-              //     DOWNLOAD_PATH,
-              //     ScriptsPath,
-              //   },
-              // });
+              const url = `studio98tools://download?project=${project}&instance=${instance}&database=${database}&dbName=${dbName}&domain=${domain}&import=${isImport}&selective=${isSelectiveTable}`;
               exec(`open "${url}"`);
             }}
           />
@@ -329,6 +315,7 @@ function ImportDatabaseForm(props: { GCLOUD_PATH: string; project: string; insta
       <Form.TextField id="dbUrl" title="Local URL" onChange={setLocalUrl} />
       <Form.TextField id="dbName" title="Database Name" onChange={setDbName} value={dbName} />
       <Form.Checkbox id="bImport" label="Import Database" defaultValue={true} onChange={setImport} />
+      <Form.Checkbox id="bSelectiveTables" label="Only Import Selective Tables" defaultValue={true} onChange={setSelectiveTable} />
     </Form>
   );
 }
