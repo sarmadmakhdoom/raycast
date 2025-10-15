@@ -1,6 +1,6 @@
 import { Action, ActionPanel, List, Icon, useNavigation } from "@raycast/api";
 
-import { useFetch } from "@raycast/utils";
+import { useFetch, usePromise } from "@raycast/utils";
 import { useEffect, useState } from "react";
 import moment from "moment";
 
@@ -36,29 +36,15 @@ const PROJECT_LIST: LaravelProject[] = [
 
 export default function Command() {
   const { push } = useNavigation();
-  const [searchText, setSearchText] = useState("");
-  useEffect(() => {
-    const filteredProjects = PROJECT_LIST.filter((item) => {
-      // If any of the tag matches
-      return item.tags?.some((tag) => tag == searchText.toLowerCase());
-    });
-
-    if (filteredProjects.length === 1) {
-      push(<JobsList project={filteredProjects[0]} />);
-    }
-  }, [searchText]);
 
   return (
     <List
       navigationTitle="Projects"
       searchBarPlaceholder="Select Project"
-      // searchText={searchText}
-      // onSearchTextChange={setSearchText}
     >
       {PROJECT_LIST.map((item) => (
         <List.Item
           key={item.name}
-          // icon={{ source: "google.png" }}
           title={item.name}
           subtitle={item.url}
           keywords={item.tags}
@@ -83,7 +69,7 @@ interface JobTypeSelectionProps {
 
 function JobTypeSelection(props: JobTypeSelectionProps) {
   return (
-    <List.Dropdown tooltip="Select Job Type" storeValue={true} onChange={props.onSelect}>
+    <List.Dropdown tooltip="Select Job Type" storeValue={true} onChange={props.onSelect} >
       <List.Dropdown.Item keywords={["completed"]} title={"Completed"} value={"completed"} />
       <List.Dropdown.Item keywords={["failed"]} title={"Failed"} value={"failed"} />
       <List.Dropdown.Item keywords={["pending"]} title={"Pending"} value={"pending"} />
@@ -96,16 +82,32 @@ function JobsList(props: { project: LaravelProject }) {
   const { project } = props;
   const [searchText, setSearchText] = useState("");
   const [type, setType] = useState<string>("");
-  const { data, isLoading } = useFetch<JobResponse[]>(
-    `${project.url}/api/horizon-on-steriods/${type}?search=${searchText}`,
-    {
-      headers: { "Content-Type": "application/json" },
-      cache: "no-cache",
-      keepPreviousData: false,
+  // const { data, isLoading } = useFetch<JobResponse[]>(
+  //   `${project.url}/api/horizon-on-steriods/${type}?search=${searchText}`,
+  //   {
+  //     headers: { "Content-Type": "application/json" },
+  //     cache: "no-cache",
+  //     keepPreviousData: false,
+  //   },
+  // );
+
+   const { isLoading, data, pagination } = usePromise(
+    (searchText: string, type: string) => async (options: { page: number }) => {
+      const response = await fetch(`${project.url}/api/horizon-on-steriods/${type}?search=${searchText}&page=${options.page}`, {
+        headers: { "Content-Type": "application/json" },
+        cache: "no-cache",
+      });
+      const data = await response.json() as JobResponse[];
+
+      
+      return { data, hasMore: data.length == 50};
     },
+    [searchText, type]
   );
 
-  console.log(data);
+  console.log(pagination)
+
+  
 
   return (
     <List
@@ -116,6 +118,7 @@ function JobsList(props: { project: LaravelProject }) {
       searchText={searchText}
       onSearchTextChange={setSearchText}
       searchBarAccessory={<JobTypeSelection onSelect={setType} />}
+      pagination={pagination}
     >
       {(data || []).map((item) => {
         let url =
