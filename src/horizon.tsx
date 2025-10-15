@@ -38,10 +38,7 @@ export default function Command() {
   const { push } = useNavigation();
 
   return (
-    <List
-      navigationTitle="Projects"
-      searchBarPlaceholder="Select Project"
-    >
+    <List navigationTitle="Projects" searchBarPlaceholder="Select Project">
       {PROJECT_LIST.map((item) => (
         <List.Item
           key={item.name}
@@ -69,7 +66,7 @@ interface JobTypeSelectionProps {
 
 function JobTypeSelection(props: JobTypeSelectionProps) {
   return (
-    <List.Dropdown tooltip="Select Job Type" storeValue={true} onChange={props.onSelect} >
+    <List.Dropdown tooltip="Select Job Type" storeValue={true} onChange={props.onSelect}>
       <List.Dropdown.Item keywords={["completed"]} title={"Completed"} value={"completed"} />
       <List.Dropdown.Item keywords={["failed"]} title={"Failed"} value={"failed"} />
       <List.Dropdown.Item keywords={["pending"]} title={"Pending"} value={"pending"} />
@@ -82,32 +79,24 @@ function JobsList(props: { project: LaravelProject }) {
   const { project } = props;
   const [searchText, setSearchText] = useState("");
   const [type, setType] = useState<string>("");
-  // const { data, isLoading } = useFetch<JobResponse[]>(
-  //   `${project.url}/api/horizon-on-steriods/${type}?search=${searchText}`,
-  //   {
-  //     headers: { "Content-Type": "application/json" },
-  //     cache: "no-cache",
-  //     keepPreviousData: false,
-  //   },
-  // );
 
-   const { isLoading, data, pagination } = usePromise(
+  const { isLoading, data, pagination } = usePromise(
     (searchText: string, type: string) => async (options: { page: number }) => {
-      const response = await fetch(`${project.url}/api/horizon-on-steriods/${type}?search=${searchText}&page=${options.page}`, {
-        headers: { "Content-Type": "application/json" },
-        cache: "no-cache",
-      });
-      const data = await response.json() as JobResponse[];
+      console.log('fetching')
+      const response = await fetch(
+        `${project.url}/api/horizon-on-steriods/${type}?search=${encodeURIComponent(searchText)}&page=${options.page}`,
+        {
+          headers: { "Content-Type": "application/json" },
+          cache: "no-cache",
 
-      
-      return { data, hasMore: data.length == 50};
+        },
+      );
+      const data = (await response.json()) as JobResponse[];
+
+      return { data, hasMore: data.length == 50 };
     },
-    [searchText, type]
+    [searchText, type],
   );
-
-  console.log(pagination)
-
-  
 
   return (
     <List
@@ -117,6 +106,7 @@ function JobsList(props: { project: LaravelProject }) {
       isShowingDetail
       searchText={searchText}
       onSearchTextChange={setSearchText}
+      throttle      
       searchBarAccessory={<JobTypeSelection onSelect={setType} />}
       pagination={pagination}
     >
@@ -124,8 +114,7 @@ function JobsList(props: { project: LaravelProject }) {
         let url =
           type == "failed" ? `${project.jobUrl}/${type}/${item.id}` : `${project.jobUrl}/jobs/${type}/${item.id}`;
         if (project.name == "Rave 1.0") {
-          url =
-            type == "failed" ? `${project.jobUrl}/${type}/${item.id}` : `${project.jobUrl}/recent-jobs/${item.id}`;
+          url = type == "failed" ? `${project.jobUrl}/${type}/${item.id}` : `${project.jobUrl}/recent-jobs/${item.id}`;
         }
 
         return (
