@@ -61,9 +61,10 @@ export default function Command() {
   const onAction = useCallback(
     async (item: ComputeInstance) => {
       const commands: string[] = [];
+      const IAPTunnelling = ['grandcentral-305016', 'ai-studio98', 'yesa-app'].includes(item.project) ? '--tunnel-through-iap' : '';
       if(item.group){
         (items ||[]).filter(c => c.group == item.group).forEach(c => {
-          commands.push(`${GCLOUD_PATH}gcloud compute ssh ${c.title} --zone=${c.zone} --project=${c.project}`);
+          commands.push(`${GCLOUD_PATH}gcloud compute ssh ${c.title} --zone=${c.zone} --project=${c.project} ${IAPTunnelling}`);
         } );
         await openInTerminal(commands)
         await closeMainWindow({ clearRootSearch: true });
