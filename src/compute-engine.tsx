@@ -7,6 +7,8 @@ import {
   showToast,
   Toast,
   getPreferenceValues,
+  Clipboard,
+  showHUD
 } from "@raycast/api";
 
 import { useLocalStorage } from "@raycast/utils";
@@ -59,19 +61,29 @@ export default function Command() {
   const { value: items, setValue: setItems, isLoading } = useLocalStorage<ComputeInstance[]>("compute-instances", []);
 
   const onAction = useCallback(
-    async (item: ComputeInstance) => {
+    async (item: ComputeInstance, justCopy = false) => {
       const commands: string[] = [];
       const IAPTunnelling = ['grandcentral-305016', 'ai-studio98', 'yesa-app'].includes(item.project) ? '--tunnel-through-iap' : '';
       if(item.group){
         (items ||[]).filter(c => c.group == item.group).forEach(c => {
           commands.push(`${GCLOUD_PATH}gcloud compute ssh ${c.title} --zone=${c.zone} --project=${c.project} ${IAPTunnelling}`);
         } );
-        await openInTerminal(commands)
-        await closeMainWindow({ clearRootSearch: true });
-        
+        if(justCopy){
+          Clipboard.copy(commands.join('\n'));
+          await showHUD("Commands copied to clipboard.");
+          await showToast(Toast.Style.Success, "Copied", "Commands copied to clipboard.");
+        }else{
+          await openInTerminal(commands)
+        }
       }else{
         const command = `${GCLOUD_PATH}gcloud compute ssh ${item.title} --zone=${item.zone} --project=${item.project}`;
-        await openInTerminal(command);
+        if(justCopy){
+          Clipboard.copy(command);
+          await showHUD("Command copied to clipboard.");
+          await showToast(Toast.Style.Success, "Copied", "Commands copied to clipboard.");
+        }else{
+          await openInTerminal(command);
+        }
         await closeMainWindow({ clearRootSearch: true });
       }
     },
@@ -120,6 +132,7 @@ export default function Command() {
           actions={
             <ActionPanel>
               <Action title="Ssh into Server" onAction={() => onAction(item)} />
+              <Action title="Copy Command" onAction={() => onAction(item, true)} />
             </ActionPanel>
           }
         />
