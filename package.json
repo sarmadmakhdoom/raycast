@@ -176,6 +176,14 @@
       "icon": "s98.png"
     },
     {
+      "name": "shortner",
+      "title": "S98 Shortner",
+      "subtitle": "Copy your clipboard to S98 Shortner",
+      "description": "Template with a plain detail view",
+      "mode": "no-view",
+      "icon": "s98.png"
+    },
+    {
       "name": "timetracking",
       "title": "Time Tracking",
       "subtitle": "GC Time Tracking",
